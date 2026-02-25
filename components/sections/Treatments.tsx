@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { colors } from "@/lib/colors";
 
 const treatmentCategories = [
   {
@@ -72,7 +73,7 @@ export default function Treatments() {
   return (
     <section
       className="w-full py-20"
-      style={{ backgroundColor: "#111111" }}
+      style={{ backgroundColor: colors.secondaryDark }}
     >
       <div className="max-w-6xl mx-auto px-6">
 
@@ -83,7 +84,7 @@ export default function Treatments() {
               fontFamily: "'Inter', sans-serif",
               fontSize: "11px",
               letterSpacing: "0.25em",
-              color: "#C9A84C",
+              color: colors.tertiary,
               textTransform: "uppercase",
               marginBottom: "0.75rem",
             }}
@@ -95,7 +96,7 @@ export default function Treatments() {
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: "clamp(2rem, 5vw, 3.2rem)",
               fontWeight: 500,
-              color: "#F5F5F5",
+              color: colors.primaryFaint,
               letterSpacing: "0.03em",
               marginBottom: "1rem",
             }}
@@ -103,9 +104,9 @@ export default function Treatments() {
             Our Treatments
           </h2>
           <div className="flex items-center justify-center gap-4">
-            <div style={{ width: "50px", height: "1px", background: "linear-gradient(90deg, transparent, #C9A84C)" }} />
-            <div style={{ width: "5px", height: "5px", borderRadius: "50%", backgroundColor: "#C9A84C" }} />
-            <div style={{ width: "50px", height: "1px", background: "linear-gradient(90deg, #C9A84C, transparent)" }} />
+            <div style={{ width: "50px", height: "1px", background: colors.gradientDividerL }} />
+            <div style={{ width: "5px", height: "5px", borderRadius: "50%", backgroundColor: colors.tertiary }} />
+            <div style={{ width: "50px", height: "1px", background: colors.gradientDividerR }} />
           </div>
         </div>
 
@@ -116,16 +117,16 @@ export default function Treatments() {
               <div className="treatment-card rounded-lg p-5 h-full cursor-pointer group">
                 {/* Category title */}
                 <div className="flex items-center gap-2 mb-4">
-                  <span style={{ color: "#C9A84C", fontSize: "10px" }}>►</span>
+                  <span style={{ color: colors.tertiary, fontSize: "10px" }}>►</span>
                   <h3
                     style={{
                       fontFamily: "'Cormorant Garamond', serif",
                       fontSize: "1.15rem",
                       fontWeight: 600,
-                      color: "#C9A84C",
+                      color: colors.tertiary,
                       letterSpacing: "0.04em",
                       textDecoration: "underline",
-                      textDecorationColor: "rgba(201,168,76,0.4)",
+                      textDecorationColor: colors.borderTertiary40,
                       textUnderlineOffset: "3px",
                     }}
                   >
@@ -133,8 +134,8 @@ export default function Treatments() {
                   </h3>
                 </div>
 
-                {/* Gold divider */}
-                <div style={{ width: "100%", height: "1px", background: "linear-gradient(90deg, rgba(201,168,76,0.5), transparent)", marginBottom: "12px" }} />
+                {/* Divider */}
+                <div style={{ width: "100%", height: "1px", background: `linear-gradient(90deg, ${colors.borderTertiary40}, transparent)`, marginBottom: "12px" }} />
 
                 {/* Treatment list */}
                 <ul className="space-y-1.5">
@@ -142,9 +143,9 @@ export default function Treatments() {
                     <li
                       key={t}
                       className="flex items-start gap-2 text-sm"
-                      style={{ color: "#C0C0C0", lineHeight: 1.5 }}
+                      style={{ color: colors.textMuted, lineHeight: 1.5 }}
                     >
-                      <span style={{ color: "#C9A84C", marginTop: "2px", fontSize: "8px", flexShrink: 0 }}>●</span>
+                      <span style={{ color: colors.tertiary, marginTop: "2px", fontSize: "8px", flexShrink: 0 }}>●</span>
                       {t}
                     </li>
                   ))}

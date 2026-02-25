@@ -1,28 +1,36 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
+import { clinicConfig } from "@/lib/clinic-config";
+import { colors } from "@/lib/colors";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="w-full sticky top-0 z-50" style={{ backgroundColor: "#0D0D0D", borderBottom: "1px solid rgba(201,168,76,0.25)" }}>
+    <header className="w-full sticky top-0 z-50" style={{ backgroundColor: colors.secondary, borderBottom: `1px solid ${colors.borderTertiary25}` }}>
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
 
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
           <div
-            className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold"
             style={{
-              background: "linear-gradient(135deg, #C9A84C 0%, #F0D080 50%, #C9A84C 100%)",
-              color: "#0D0D0D",
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "14px",
-              letterSpacing: "0.05em",
+              width: "40px",
+              height: "40px",
+              borderRadius: "50%",
+              overflow: "hidden",
+              flexShrink: 0,
             }}
           >
-            JR
+            <Image
+              src={clinicConfig.logo}
+              alt={clinicConfig.name}
+              width={40}
+              height={40}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
           </div>
           <div>
             <div
@@ -32,7 +40,7 @@ export default function Navbar() {
                 fontWeight: 600,
                 letterSpacing: "0.03em",
                 lineHeight: 1.1,
-                background: "linear-gradient(135deg, #C9A84C 0%, #F0D080 50%, #C9A84C 100%)",
+                background: colors.gradientTertiary,
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -45,7 +53,7 @@ export default function Navbar() {
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "10px",
                 letterSpacing: "0.18em",
-                color: "#A0A0A0",
+                color: colors.textMuted,
                 textTransform: "uppercase",
               }}
             >
@@ -66,9 +74,9 @@ export default function Navbar() {
               key={item.href}
               href={item.href}
               className="transition-colors duration-200"
-              style={{ color: "#A0A0A0", textTransform: "uppercase", fontSize: "11px", letterSpacing: "0.12em" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#C9A84C")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "#A0A0A0")}
+              style={{ color: colors.textMuted, textTransform: "uppercase", fontSize: "11px", letterSpacing: "0.12em" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = colors.tertiary)}
+              onMouseLeave={(e) => (e.currentTarget.style.color = colors.textMuted)}
             >
               {item.label}
             </Link>
@@ -78,14 +86,14 @@ export default function Navbar() {
         {/* CTA */}
         <div className="flex items-center gap-3">
           <a
-            href="tel:+919137493538"
+            href={`tel:${clinicConfig.phone}`}
             className="hidden md:flex items-center gap-2 text-sm"
-            style={{ color: "#C9A84C", letterSpacing: "0.05em" }}
+            style={{ color: colors.tertiary, letterSpacing: "0.05em" }}
           >
             <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
               <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" />
             </svg>
-            9137493538
+            {clinicConfig.phoneDisplay}
           </a>
           <Link href="/book">
             <button className="btn-gold px-5 py-2 rounded text-xs" style={{ letterSpacing: "0.1em", textTransform: "uppercase" }}>
@@ -95,7 +103,7 @@ export default function Navbar() {
           {/* Mobile hamburger */}
           <button
             className="md:hidden p-2"
-            style={{ color: "#C9A84C" }}
+            style={{ color: colors.tertiary }}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
@@ -112,7 +120,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden px-4 pb-4" style={{ backgroundColor: "#111111", borderTop: "1px solid rgba(201,168,76,0.15)" }}>
+        <div className="md:hidden px-4 pb-4" style={{ backgroundColor: colors.secondaryDark, borderTop: `1px solid ${colors.borderTertiary15}` }}>
           {[
             { label: "Treatments", href: "/treatments" },
             { label: "Reviews", href: "/reviews" },
@@ -123,14 +131,14 @@ export default function Navbar() {
               key={item.href}
               href={item.href}
               className="block py-3 text-sm"
-              style={{ color: "#A0A0A0", borderBottom: "1px solid rgba(201,168,76,0.08)", letterSpacing: "0.1em", textTransform: "uppercase" }}
+              style={{ color: colors.textMuted, borderBottom: `1px solid ${colors.borderTertiary08}`, letterSpacing: "0.1em", textTransform: "uppercase" }}
               onClick={() => setMenuOpen(false)}
             >
               {item.label}
             </Link>
           ))}
-          <a href="tel:+919137493538" className="block py-3 text-sm" style={{ color: "#C9A84C" }}>
-            📞 9137493538
+          <a href={`tel:${clinicConfig.phone}`} className="block py-3 text-sm" style={{ color: colors.tertiary }}>
+            📞 {clinicConfig.phoneDisplay}
           </a>
         </div>
       )}

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
+import { clinicConfig } from "@/lib/clinic-config";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -24,51 +25,51 @@ export default function AppointmentForm() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setLoading(true);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
 
-  if (!treatment) {
-    alert("Please select treatment");
-    setLoading(false);
-    return;
-  }
+    if (!treatment) {
+      alert("Please select treatment");
+      setLoading(false);
+      return;
+    }
 
-  // 1️⃣ Save to Supabase
-  const { error } = await supabase.from("appointments").insert([
-    {
-      name,
-      phone,
-      treatment,
-      preferred_time: preferredTime,
-      message,
-    },
-  ]);
+    // 1️⃣ Save to Supabase
+    const { error } = await supabase.from("appointments").insert([
+      {
+        name,
+        phone,
+        treatment,
+        preferred_time: preferredTime,
+        message,
+      },
+    ]);
 
-  // ❗ Stop if DB failed
-  if (error) {
-    setLoading(false);
-    alert("Error booking appointment. Try again.");
-    return;
-  }
+    // ❗ Stop if DB failed
+    if (error) {
+      setLoading(false);
+      alert("Error booking appointment. Try again.");
+      return;
+    }
 
-  // 2️⃣ Send email
-  await fetch("/api/send-booking-email", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      name,
-      phone,
-      treatment,
-      preferredTime,
-      message,
-    }),
-  });
+    // 2️⃣ Send email
+    await fetch("/api/send-booking-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        phone,
+        treatment,
+        preferredTime,
+        message,
+      }),
+    });
 
-  // 3️⃣ Open WhatsApp
-  const whatsappNumber = "9137493538";
+    // 3️⃣ Open WhatsApp
+    const whatsappNumber = clinicConfig.whatsapp;
 
-  const whatsappMessage = `New Appointment
+    const whatsappMessage = `New Appointment
 
   Name: ${name}
   Phone: ${phone}
@@ -76,22 +77,22 @@ const handleSubmit = async (e: React.FormEvent) => {
   Preferred Time: ${preferredTime}
   Message: ${message}`;
 
-  window.open(
-    `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-      whatsappMessage
-    )}`,
-    "_blank"
-  );
+    window.open(
+      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+        whatsappMessage
+      )}`,
+      "_blank"
+    );
 
-  // 4️⃣ Reset UI
-  setSuccess(true);
-  setName("");
-  setPhone("");
-  setTreatment("");
-  setPreferredTime("");
-  setMessage("");
-  setLoading(false);
-};
+    // 4️⃣ Reset UI
+    setSuccess(true);
+    setName("");
+    setPhone("");
+    setTreatment("");
+    setPreferredTime("");
+    setMessage("");
+    setLoading(false);
+  };
 
   return (
     <form className="space-y-6" onSubmit={handleSubmit}>

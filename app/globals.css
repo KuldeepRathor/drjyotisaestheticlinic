@@ -53,30 +53,50 @@
 
 :root {
   --radius: 0.625rem;
-  --gold: #C9A84C;
-  --gold-light: #F0D080;
-  --gold-dark: #9A7A2E;
-  --clinic-black: #0D0D0D;
-  --clinic-dark: #161616;
-  --clinic-card: #1C1C1C;
+
+  /* ── Global Palette (matches lib/colors.ts) ── */
+  /* Primary: shades of white */
+  --color-primary:        #FAFAFA;
+  --color-primary-light:  #FFFFFF;
+  --color-primary-dark:   #F0EDE8;
+  --color-primary-faint:  #F5F5F5;
+
+  /* Secondary: shades of black */
+  --color-secondary:       #0D0D0D;
+  --color-secondary-dark:  #111111;
+  --color-secondary-card:  #161616;
+  --color-secondary-subtle:#1C1C1C;
+
+  /* Tertiary: shades of #CAB482 (gold) */
+  --color-tertiary:       #CAB482;
+  --color-tertiary-light: #E8D4A8;
+  --color-tertiary-dark:  #9A7A2E;
+
+  /* Text tones */
+  --color-text-muted:      #A0A0A0;
+  --color-text-subtle:     #808080;
+  --color-text-faint:      #707070;
+  --color-text-very-faint: #505050;
+
+  /* Shadcn / Tailwind mappings */
   --background: oklch(0.07 0 0);
   --foreground: oklch(0.97 0 0);
   --card: oklch(0.12 0 0);
   --card-foreground: oklch(0.97 0 0);
   --popover: oklch(0.12 0 0);
   --popover-foreground: oklch(0.97 0 0);
-  --primary: oklch(0.75 0.12 85);
+  --primary: oklch(0.78 0.08 85);
   --primary-foreground: oklch(0.1 0 0);
   --secondary: oklch(0.18 0 0);
   --secondary-foreground: oklch(0.97 0 0);
   --muted: oklch(0.18 0 0);
   --muted-foreground: oklch(0.65 0 0);
-  --accent: oklch(0.75 0.12 85);
+  --accent: oklch(0.78 0.08 85);
   --accent-foreground: oklch(0.1 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.25 0.04 85 / 40%);
+  --border: oklch(0.28 0.04 75 / 40%);
   --input: oklch(0.25 0 0);
-  --ring: oklch(0.75 0.12 85);
+  --ring: oklch(0.78 0.08 85);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -84,12 +104,12 @@
   --chart-5: oklch(0.769 0.188 70.08);
   --sidebar: oklch(0.1 0 0);
   --sidebar-foreground: oklch(0.97 0 0);
-  --sidebar-primary: oklch(0.75 0.12 85);
+  --sidebar-primary: oklch(0.78 0.08 85);
   --sidebar-primary-foreground: oklch(0.1 0 0);
   --sidebar-accent: oklch(0.18 0 0);
   --sidebar-accent-foreground: oklch(0.97 0 0);
   --sidebar-border: oklch(0.25 0 0);
-  --sidebar-ring: oklch(0.75 0.12 85);
+  --sidebar-ring: oklch(0.78 0.08 85);
 }
 
 @layer base {
@@ -99,8 +119,8 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', sans-serif;
-    background-color: #0D0D0D;
-    color: #F5F5F5;
+    background-color: var(--color-secondary);
+    color: var(--color-primary-faint);
   }
   h1, h2, h3, h4 {
     font-family: 'Cormorant Garamond', serif;
@@ -109,7 +129,7 @@
 
 /* Gold gradient text utility */
 .gold-text {
-  background: linear-gradient(135deg, #C9A84C 0%, #F0D080 50%, #C9A84C 100%);
+  background: linear-gradient(135deg, var(--color-tertiary) 0%, var(--color-tertiary-light) 50%, var(--color-tertiary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -118,21 +138,21 @@
 /* Gold gradient border */
 .gold-border {
   border: 1px solid;
-  border-image: linear-gradient(135deg, #C9A84C, #F0D080, #C9A84C) 1;
+  border-image: linear-gradient(135deg, var(--color-tertiary), var(--color-tertiary-light), var(--color-tertiary)) 1;
 }
 
 /* Decorative gold divider */
 .gold-divider {
   width: 80px;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+  background: linear-gradient(90deg, transparent, var(--color-tertiary), transparent);
   margin: 0 auto;
 }
 
 /* Gold button */
 .btn-gold {
-  background: linear-gradient(135deg, #C9A84C 0%, #F0D080 50%, #C9A84C 100%);
-  color: #0D0D0D;
+  background: linear-gradient(135deg, var(--color-tertiary) 0%, var(--color-tertiary-light) 50%, var(--color-tertiary) 100%);
+  color: var(--color-secondary);
   font-weight: 600;
   letter-spacing: 0.05em;
   transition: all 0.3s ease;
@@ -140,47 +160,47 @@
 }
 
 .btn-gold:hover {
-  background: linear-gradient(135deg, #F0D080 0%, #C9A84C 50%, #F0D080 100%);
+  background: linear-gradient(135deg, var(--color-tertiary-light) 0%, var(--color-tertiary) 50%, var(--color-tertiary-light) 100%);
   transform: translateY(-1px);
-  box-shadow: 0 8px 25px rgba(201, 168, 76, 0.35);
+  box-shadow: 0 8px 25px rgba(202, 180, 130, 0.35);
 }
 
 /* Outline gold button */
 .btn-gold-outline {
   background: transparent;
-  color: #C9A84C;
-  border: 1px solid #C9A84C;
+  color: var(--color-tertiary);
+  border: 1px solid var(--color-tertiary);
   font-weight: 500;
   letter-spacing: 0.05em;
   transition: all 0.3s ease;
 }
 
 .btn-gold-outline:hover {
-  background: rgba(201, 168, 76, 0.1);
+  background: rgba(202, 180, 130, 0.1);
   transform: translateY(-1px);
-  box-shadow: 0 4px 15px rgba(201, 168, 76, 0.2);
+  box-shadow: 0 4px 15px rgba(202, 180, 130, 0.2);
 }
 
 /* Treatment card */
 .treatment-card {
-  background: #161616;
-  border: 1px solid rgba(201, 168, 76, 0.2);
+  background: var(--color-secondary-card);
+  border: 1px solid rgba(202, 180, 130, 0.2);
   transition: all 0.3s ease;
 }
 
 .treatment-card:hover {
-  border-color: rgba(201, 168, 76, 0.6);
-  box-shadow: 0 8px 30px rgba(201, 168, 76, 0.1);
+  border-color: rgba(202, 180, 130, 0.6);
+  box-shadow: 0 8px 30px rgba(202, 180, 130, 0.1);
   transform: translateY(-2px);
 }
 
 /* Review card */
 .review-card {
-  background: #161616;
-  border: 1px solid rgba(201, 168, 76, 0.15);
+  background: var(--color-secondary-card);
+  border: 1px solid rgba(202, 180, 130, 0.15);
 }
 
 /* Subtle radial glow */
 .hero-glow {
-  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201, 168, 76, 0.12) 0%, transparent 70%);
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(202, 180, 130, 0.12) 0%, transparent 70%);
 }

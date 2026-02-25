@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { colors } from "@/lib/colors";
 
 const reviews = [
   {
@@ -30,21 +31,21 @@ const stats = [
 
 export default function SocialProof() {
   return (
-    <section className="w-full py-20" style={{ backgroundColor: "#0D0D0D" }}>
+    <section className="w-full py-20" style={{ backgroundColor: colors.secondary }}>
       <div className="max-w-6xl mx-auto px-6">
 
         {/* Stats bar */}
         <div
           className="grid grid-cols-2 md:grid-cols-4 gap-0 mb-20 rounded-lg overflow-hidden"
-          style={{ border: "1px solid rgba(201,168,76,0.25)" }}
+          style={{ border: `1px solid ${colors.borderTertiary25}` }}
         >
           {stats.map((stat, i) => (
             <div
               key={i}
               className="py-8 text-center"
               style={{
-                backgroundColor: "#161616",
-                borderRight: i < stats.length - 1 ? "1px solid rgba(201,168,76,0.15)" : "none",
+                backgroundColor: colors.secondaryCard,
+                borderRight: i < stats.length - 1 ? `1px solid ${colors.borderTertiary15}` : "none",
               }}
             >
               <div
@@ -52,7 +53,7 @@ export default function SocialProof() {
                   fontFamily: "'Cormorant Garamond', serif",
                   fontSize: "2.5rem",
                   fontWeight: 600,
-                  background: "linear-gradient(135deg, #C9A84C 0%, #F0D080 50%, #C9A84C 100%)",
+                  background: colors.gradientTertiary,
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -67,7 +68,7 @@ export default function SocialProof() {
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "11px",
                   letterSpacing: "0.15em",
-                  color: "#808080",
+                  color: colors.textSubtle,
                   textTransform: "uppercase",
                 }}
               >
@@ -84,7 +85,7 @@ export default function SocialProof() {
               fontFamily: "'Inter', sans-serif",
               fontSize: "11px",
               letterSpacing: "0.25em",
-              color: "#C9A84C",
+              color: colors.tertiary,
               textTransform: "uppercase",
               marginBottom: "0.75rem",
             }}
@@ -96,7 +97,7 @@ export default function SocialProof() {
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: "clamp(2rem, 5vw, 3.2rem)",
               fontWeight: 500,
-              color: "#F5F5F5",
+              color: colors.primaryFaint,
               letterSpacing: "0.03em",
               marginBottom: "1rem",
             }}
@@ -104,9 +105,9 @@ export default function SocialProof() {
             What Our Patients Say
           </h2>
           <div className="flex items-center justify-center gap-4">
-            <div style={{ width: "50px", height: "1px", background: "linear-gradient(90deg, transparent, #C9A84C)" }} />
-            <div style={{ width: "5px", height: "5px", borderRadius: "50%", backgroundColor: "#C9A84C" }} />
-            <div style={{ width: "50px", height: "1px", background: "linear-gradient(90deg, #C9A84C, transparent)" }} />
+            <div style={{ width: "50px", height: "1px", background: colors.gradientDividerL }} />
+            <div style={{ width: "5px", height: "5px", borderRadius: "50%", backgroundColor: colors.tertiary }} />
+            <div style={{ width: "50px", height: "1px", background: colors.gradientDividerR }} />
           </div>
         </div>
 
@@ -117,7 +118,7 @@ export default function SocialProof() {
               {/* Stars */}
               <div className="flex gap-1 mb-4">
                 {Array.from({ length: review.rating }).map((_, i) => (
-                  <span key={i} style={{ color: "#C9A84C", fontSize: "14px" }}>★</span>
+                  <span key={i} style={{ color: colors.tertiary, fontSize: "14px" }}>★</span>
                 ))}
               </div>
 
@@ -127,7 +128,7 @@ export default function SocialProof() {
                   fontFamily: "'Cormorant Garamond', serif",
                   fontSize: "1.05rem",
                   fontStyle: "italic",
-                  color: "#D0D0D0",
+                  color: colors.primary,
                   lineHeight: 1.7,
                   flex: 1,
                   marginBottom: "1.25rem",
@@ -137,13 +138,13 @@ export default function SocialProof() {
               </p>
 
               {/* Author */}
-              <div style={{ borderTop: "1px solid rgba(201,168,76,0.15)", paddingTop: "1rem" }}>
+              <div style={{ borderTop: `1px solid ${colors.borderTertiary15}`, paddingTop: "1rem" }}>
                 <div
                   style={{
                     fontFamily: "'Inter', sans-serif",
                     fontSize: "13px",
                     fontWeight: 600,
-                    color: "#F5F5F5",
+                    color: colors.primaryFaint,
                     marginBottom: "2px",
                   }}
                 >
@@ -153,7 +154,7 @@ export default function SocialProof() {
                   style={{
                     fontFamily: "'Inter', sans-serif",
                     fontSize: "11px",
-                    color: "#C9A84C",
+                    color: colors.tertiary,
                     letterSpacing: "0.05em",
                   }}
                 >

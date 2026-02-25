@@ -1,7 +1,7 @@
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-
+import StickyWhatsApp from "@/components/sticky-whatsapp";
 export const metadata = {
   title: "Dr Jyoti’s Aesthetic Clinic",
   description:
@@ -19,6 +19,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
+        <StickyWhatsApp />
       </body>
     </html>
   );
