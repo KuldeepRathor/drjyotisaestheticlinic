@@ -31,7 +31,7 @@ const stats = [
 
 export default function SocialProof() {
   return (
-    <section className="w-full py-20" style={{ backgroundColor: colors.secondary }}>
+    <section id="reviews" className="w-full py-20" style={{ backgroundColor: colors.secondary }}>
       <div className="max-w-6xl mx-auto px-6">
 
         {/* Stats bar */}

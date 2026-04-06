@@ -6,6 +6,7 @@ export const clinicConfig = {
   // Initials shown as alt text; actual logo image used where possible
   initials: "JR",
   logo: "/logo/clinic-logo.png",
+  doctor_profile: "/images/doctor_profile.jpg",
 
   phone: "+919137493538",
   phoneDisplay: "9137493538",

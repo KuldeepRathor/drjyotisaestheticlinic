@@ -3,11 +3,46 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { clinicConfig } from "@/lib/clinic-config";
 import { colors } from "@/lib/colors";
 
+const navItems = [
+  { label: "Treatments", href: "#treatments" },
+  { label: "Reviews", href: "#reviews" },
+  { label: "Doctor", href: "#doctor" },
+  { label: "Location", href: "#location" },
+];
+
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const router = useRouter();
+
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    e.preventDefault();
+    setMenuOpen(false);
+
+    const sectionId = href.replace("#", "");
+    const scrollToSection = () => {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    };
+
+    // If already on home page, just scroll
+    if (window.location.pathname === "/") {
+      scrollToSection();
+    } else {
+      // Navigate home first, then scroll after navigation completes
+      router.push("/");
+      // Use a short delay to allow the page to load before scrolling
+      setTimeout(scrollToSection, 400);
+    }
+  };
 
   return (
     <header className="w-full sticky top-0 z-50" style={{ backgroundColor: colors.secondary, borderBottom: `1px solid ${colors.borderTertiary25}` }}>
@@ -64,22 +99,18 @@ export default function Navbar() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-8 text-sm" style={{ letterSpacing: "0.08em" }}>
-          {[
-            { label: "Treatments", href: "/treatments" },
-            { label: "Reviews", href: "/reviews" },
-            { label: "Doctor", href: "/doctor" },
-            { label: "Location", href: "/location" },
-          ].map((item) => (
-            <Link
+          {navItems.map((item) => (
+            <a
               key={item.href}
               href={item.href}
-              className="transition-colors duration-200"
+              onClick={(e) => handleNavClick(e, item.href)}
+              className="transition-colors duration-200 cursor-pointer"
               style={{ color: colors.textMuted, textTransform: "uppercase", fontSize: "11px", letterSpacing: "0.12em" }}
               onMouseEnter={(e) => (e.currentTarget.style.color = colors.tertiary)}
               onMouseLeave={(e) => (e.currentTarget.style.color = colors.textMuted)}
             >
               {item.label}
-            </Link>
+            </a>
           ))}
         </nav>
 
@@ -121,21 +152,16 @@ export default function Navbar() {
       {/* Mobile menu */}
       {menuOpen && (
         <div className="md:hidden px-4 pb-4" style={{ backgroundColor: colors.secondaryDark, borderTop: `1px solid ${colors.borderTertiary15}` }}>
-          {[
-            { label: "Treatments", href: "/treatments" },
-            { label: "Reviews", href: "/reviews" },
-            { label: "Doctor", href: "/doctor" },
-            { label: "Location", href: "/location" },
-          ].map((item) => (
-            <Link
+          {navItems.map((item) => (
+            <a
               key={item.href}
               href={item.href}
-              className="block py-3 text-sm"
+              onClick={(e) => handleNavClick(e, item.href)}
+              className="block py-3 text-sm cursor-pointer"
               style={{ color: colors.textMuted, borderBottom: `1px solid ${colors.borderTertiary08}`, letterSpacing: "0.1em", textTransform: "uppercase" }}
-              onClick={() => setMenuOpen(false)}
             >
               {item.label}
-            </Link>
+            </a>
           ))}
           <a href={`tel:${clinicConfig.phone}`} className="block py-3 text-sm" style={{ color: colors.tertiary }}>
             📞 {clinicConfig.phoneDisplay}
@@ -145,3 +171,4 @@ export default function Navbar() {
     </header>
   );
 }
+

@@ -72,6 +72,7 @@ const treatmentCategories = [
 export default function Treatments() {
   return (
     <section
+      id="treatments"
       className="w-full py-20"
       style={{ backgroundColor: colors.secondaryDark }}
     >
