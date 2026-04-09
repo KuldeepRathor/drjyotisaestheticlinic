@@ -36,16 +36,20 @@ export default function SocialProof() {
 
         {/* Stats bar */}
         <div
-          className="grid grid-cols-2 md:grid-cols-4 gap-0 mb-20 rounded-lg overflow-hidden"
-          style={{ border: `1px solid ${colors.borderTertiary25}` }}
+          className="grid grid-cols-2 md:grid-cols-4 mb-20 rounded-lg overflow-hidden divide-x divide-y md:divide-y-0"
+          style={{
+            border: `1px solid ${colors.borderTertiary25}`,
+            borderColor: colors.borderTertiary25,
+            "--tw-divide-opacity": "1",
+          } as React.CSSProperties}
         >
           {stats.map((stat, i) => (
             <div
               key={i}
-              className="py-8 text-center"
+              className="py-6 md:py-8 text-center"
               style={{
                 backgroundColor: colors.secondaryCard,
-                borderRight: i < stats.length - 1 ? `1px solid ${colors.borderTertiary15}` : "none",
+                borderColor: colors.borderTertiary15,
               }}
             >
               <div

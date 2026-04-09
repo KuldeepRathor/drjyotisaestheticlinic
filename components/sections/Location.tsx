@@ -53,7 +53,7 @@ export default function Location() {
 
           {/* Address card */}
           <div
-            className="rounded-2xl p-8 h-full"
+            className="rounded-2xl p-6 sm:p-8"
             style={{
               backgroundColor: colors.secondaryCard,
               border: `1px solid ${colors.borderTertiary25}`,
@@ -202,7 +202,7 @@ export default function Location() {
             className="rounded-2xl overflow-hidden"
             style={{
               border: `1px solid ${colors.borderTertiary25}`,
-              height: "480px",
+              height: "clamp(280px, 60vw, 480px)",
               boxShadow: `0 0 40px ${colors.glowTertiary08}`,
             }}
           >

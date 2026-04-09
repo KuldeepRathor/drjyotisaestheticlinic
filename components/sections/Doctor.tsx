@@ -29,7 +29,7 @@ export default function Doctor() {
       <div className="max-w-6xl mx-auto px-6">
 
         {/* Section header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 md:mb-16">
           <p
             style={{
               fontFamily: "'Inter', sans-serif",
@@ -74,17 +74,17 @@ export default function Doctor() {
 
             {/* Image side */}
             <div
-              className="relative flex items-center justify-center p-12"
+              className="relative flex items-center justify-center p-8 md:p-12 border-b md:border-b-0 md:border-r"
               style={{
                 background: `radial-gradient(ellipse 80% 80% at 50% 50%, ${colors.glowTertiary13} 0%, transparent 70%)`,
-                borderRight: `1px solid ${colors.borderTertiary15}`,
+                borderColor: colors.borderTertiary15,
               }}
             >
               <div
+                className="md:hidden"
                 style={{
-                  width: "360px",
-                  height: "520px",
-                  // borderRadius: "50%",
+                  width: "min(280px, 80vw)",
+                  height: "min(380px, 110vw)",
                   overflow: "hidden",
                   border: `2px solid ${colors.borderTertiary40}`,
                   boxShadow: `0 0 40px ${colors.borderTertiary30}`,
@@ -93,22 +93,40 @@ export default function Doctor() {
                 <Image
                   src={clinicConfig.doctor_profile}
                   alt="Dr Jyoti"
-                  width={240}
-                  height={240}
+                  width={280}
+                  height={380}
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </div>
+              <div
+                className="hidden md:block"
+                style={{
+                  width: "360px",
+                  height: "520px",
+                  overflow: "hidden",
+                  border: `2px solid ${colors.borderTertiary40}`,
+                  boxShadow: `0 0 40px ${colors.borderTertiary30}`,
+                }}
+              >
+                <Image
+                  src={clinicConfig.doctor_profile}
+                  alt="Dr Jyoti"
+                  width={360}
+                  height={520}
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
               </div>
 
               {/* Decorative lines */}
               <div
-                className="absolute top-6 left-6 w-12 h-12 pointer-events-none"
+                className="absolute top-4 left-4 md:top-6 md:left-6 w-10 h-10 md:w-12 md:h-12 pointer-events-none"
                 style={{
                   borderTop: `1px solid ${colors.borderTertiary40}`,
                   borderLeft: `1px solid ${colors.borderTertiary40}`,
                 }}
               />
               <div
-                className="absolute bottom-6 right-6 w-12 h-12 pointer-events-none"
+                className="absolute bottom-4 right-4 md:bottom-6 md:right-6 w-10 h-10 md:w-12 md:h-12 pointer-events-none"
                 style={{
                   borderBottom: `1px solid ${colors.borderTertiary40}`,
                   borderRight: `1px solid ${colors.borderTertiary40}`,
@@ -117,7 +135,7 @@ export default function Doctor() {
             </div>
 
             {/* Content side */}
-            <div className="p-10 flex flex-col justify-center">
+            <div className="p-6 sm:p-8 md:p-10 flex flex-col justify-center">
               <div
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",

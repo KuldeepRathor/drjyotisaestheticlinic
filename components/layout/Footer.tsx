@@ -17,7 +17,7 @@ export default function Footer() {
       <div style={{ height: "2px", background: colors.gradientDividerH }} />
 
       <div className="max-w-6xl mx-auto px-6 py-12">
-        <div className="grid md:grid-cols-3 gap-10 mb-10">
+        <div className="grid md:grid-cols-3 gap-8 md:gap-10 mb-10">
 
           {/* Brand */}
           <div>

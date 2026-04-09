@@ -7,7 +7,7 @@ export default function CTA() {
     <section className="w-full py-20" style={{ backgroundColor: colors.secondaryDark }}>
       <div className="max-w-4xl mx-auto px-6">
         <div
-          className="rounded-2xl p-12 text-center relative overflow-hidden"
+          className="rounded-2xl p-8 sm:p-12 text-center relative overflow-hidden"
           style={{
             backgroundColor: colors.secondaryCard,
             border: `1px solid ${colors.borderTertiary30}`,
