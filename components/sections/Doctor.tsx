@@ -4,10 +4,10 @@ import { clinicConfig } from "@/lib/clinic-config";
 import { colors } from "@/lib/colors";
 
 const credentials = [
-  "MBBS – Medical Graduate",
-  "Certified Aesthetic Dermatologist",
+  "BAMS – Medical Graduate",
+  "Certified Aesthetic Skin Specialist",
   "Laser & Cosmetic Procedure Expert",
-  "8+ Years Clinical Experience",
+  "4+ Years Clinical Experience",
   "500+ Satisfied Patients",
 ];
 
@@ -157,7 +157,7 @@ export default function Doctor() {
                   marginBottom: "1.5rem",
                 }}
               >
-                With over 8 years of clinical excellence, Dr Jyoti combines medical
+                With over 4 years of clinical excellence, Dr Jyoti combines medical
                 precision with artistic vision to deliver transformative aesthetic
                 results. Her patient-first approach has made her one of the most
                 trusted names in Navi Mumbai.

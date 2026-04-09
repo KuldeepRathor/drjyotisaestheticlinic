@@ -24,7 +24,7 @@ const reviews = [
 
 const stats = [
   { value: "500+", label: "Happy Patients" },
-  { value: "8+", label: "Years Experience" },
+  { value: "4+", label: "Years Experience" },
   { value: "20+", label: "Treatments" },
   { value: "5★", label: "Google Rating" },
 ];

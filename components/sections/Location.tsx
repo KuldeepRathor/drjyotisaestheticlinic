@@ -171,7 +171,7 @@ export default function Location() {
               </div>
               <div className="space-y-1">
                 {[
-                  { days: "Mon – Sun", time: "10:00 AM – 8:00 PM" },
+                  { days: "Mon – Sun", time: "11:00 AM – 8:00 PM" },
                   // { days: "Sunday", time: "10:00 AM – 2:00 PM" },
                 ].map((row) => (
                   <div key={row.days} className="flex justify-between items-center">
