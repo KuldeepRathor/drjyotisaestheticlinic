@@ -1,7 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { clinicConfig } from "@/lib/clinic-config";
 import { colors } from "@/lib/colors";
+import { motion } from "framer-motion";
+import { fadeUp, fadeIn, staggerContainer, cardItem, sectionHeader } from "@/lib/animations";
 
 const credentials = [
   "BAMS – Medical Graduate",
@@ -29,8 +33,15 @@ export default function Doctor() {
       <div className="max-w-6xl mx-auto px-6">
 
         {/* Section header */}
-        <div className="text-center mb-10 md:mb-16">
-          <p
+        <motion.div
+          className="text-center mb-10 md:mb-16"
+          variants={sectionHeader}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <motion.p
+            variants={fadeUp}
             style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "11px",
@@ -41,8 +52,9 @@ export default function Doctor() {
             }}
           >
             Meet Your Expert
-          </p>
-          <h2
+          </motion.p>
+          <motion.h2
+            variants={fadeUp}
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: "clamp(2rem, 5vw, 3.2rem)",
@@ -53,34 +65,40 @@ export default function Doctor() {
             }}
           >
             About Dr Jyoti
-          </h2>
-          <div className="flex items-center justify-center gap-4">
+          </motion.h2>
+          <motion.div variants={fadeUp} className="flex items-center justify-center gap-4">
             <div style={{ width: "50px", height: "1px", background: colors.gradientDividerL }} />
             <div style={{ width: "5px", height: "5px", borderRadius: "50%", backgroundColor: colors.tertiary }} />
             <div style={{ width: "50px", height: "1px", background: colors.gradientDividerR }} />
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Doctor profile card */}
-        <div
+        <motion.div
           className="rounded-2xl overflow-hidden"
           style={{
             border: `1px solid ${colors.borderTertiary25}`,
             backgroundColor: colors.secondaryCard,
             boxShadow: `0 0 60px ${colors.glowTertiary08}`,
           }}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
         >
           <div className="grid md:grid-cols-2 gap-0">
 
             {/* Image side */}
-            <div
+            <motion.div
               className="relative flex items-center justify-center p-8 md:p-12 border-b md:border-b-0 md:border-r"
               style={{
                 background: `radial-gradient(ellipse 80% 80% at 50% 50%, ${colors.glowTertiary13} 0%, transparent 70%)`,
                 borderColor: colors.borderTertiary15,
               }}
+              variants={fadeIn}
             >
-              <div
+              {/* Mobile image */}
+              <motion.div
                 className="md:hidden"
                 style={{
                   width: "min(280px, 80vw)",
@@ -89,6 +107,10 @@ export default function Doctor() {
                   border: `2px solid ${colors.borderTertiary40}`,
                   boxShadow: `0 0 40px ${colors.borderTertiary30}`,
                 }}
+                initial={{ opacity: 0, scale: 1.05 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
               >
                 <Image
                   src={clinicConfig.doctor_profile}
@@ -97,8 +119,9 @@ export default function Doctor() {
                   height={380}
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
-              </div>
-              <div
+              </motion.div>
+              {/* Desktop image */}
+              <motion.div
                 className="hidden md:block"
                 style={{
                   width: "360px",
@@ -107,6 +130,10 @@ export default function Doctor() {
                   border: `2px solid ${colors.borderTertiary40}`,
                   boxShadow: `0 0 40px ${colors.borderTertiary30}`,
                 }}
+                initial={{ opacity: 0, scale: 1.05 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
               >
                 <Image
                   src={clinicConfig.doctor_profile}
@@ -115,7 +142,7 @@ export default function Doctor() {
                   height={520}
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
-              </div>
+              </motion.div>
 
               {/* Decorative lines */}
               <div
@@ -132,11 +159,18 @@ export default function Doctor() {
                   borderRight: `1px solid ${colors.borderTertiary40}`,
                 }}
               />
-            </div>
+            </motion.div>
 
             {/* Content side */}
-            <div className="p-6 sm:p-8 md:p-10 flex flex-col justify-center">
-              <div
+            <motion.div
+              className="p-6 sm:p-8 md:p-10 flex flex-col justify-center"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <motion.div
+                variants={cardItem}
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
                   fontSize: "2rem",
@@ -150,8 +184,9 @@ export default function Doctor() {
                 }}
               >
                 Dr Jyoti Rathor
-              </div>
-              <div
+              </motion.div>
+              <motion.div
+                variants={cardItem}
                 style={{
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "11px",
@@ -161,11 +196,12 @@ export default function Doctor() {
                   marginBottom: "1.5rem",
                 }}
               >
-                Aesthetic Dermatologist & Cosmetologist
-              </div>
+                Aesthetic Dermatologist &amp; Cosmetologist
+              </motion.div>
 
               {/* Bio */}
-              <p
+              <motion.p
+                variants={cardItem}
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
                   fontSize: "1.05rem",
@@ -179,10 +215,10 @@ export default function Doctor() {
                 precision with artistic vision to deliver transformative aesthetic
                 results. Her patient-first approach has made her one of the most
                 trusted names in Navi Mumbai.
-              </p>
+              </motion.p>
 
               {/* Credentials */}
-              <div style={{ marginBottom: "1.5rem" }}>
+              <motion.div variants={cardItem} style={{ marginBottom: "1.5rem" }}>
                 <div
                   style={{
                     fontFamily: "'Inter', sans-serif",
@@ -207,10 +243,10 @@ export default function Doctor() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
 
               {/* Specializations */}
-              <div style={{ marginBottom: "2rem" }}>
+              <motion.div variants={cardItem} style={{ marginBottom: "2rem" }}>
                 <div
                   style={{
                     fontFamily: "'Inter', sans-serif",
@@ -240,20 +276,25 @@ export default function Doctor() {
                     </span>
                   ))}
                 </div>
-              </div>
+              </motion.div>
 
               {/* CTA */}
-              <Link href="/book">
-                <button
-                  className="btn-gold px-8 py-3 rounded text-xs"
-                  style={{ letterSpacing: "0.12em", textTransform: "uppercase" }}
-                >
-                  Book a Consultation
-                </button>
-              </Link>
-            </div>
+              <motion.div variants={cardItem}>
+                <Link href="/book">
+                  <motion.button
+                    className="btn-gold px-8 py-3 rounded text-xs"
+                    style={{ letterSpacing: "0.12em", textTransform: "uppercase" }}
+                    whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
+                    whileTap={{ scale: 0.97 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    Book a Consultation
+                  </motion.button>
+                </Link>
+              </motion.div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

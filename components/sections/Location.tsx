@@ -1,5 +1,9 @@
+"use client";
+
 import { clinicConfig } from "@/lib/clinic-config";
 import { colors } from "@/lib/colors";
+import { motion } from "framer-motion";
+import { fadeUp, sectionHeader, cardItem } from "@/lib/animations";
 
 export default function Location() {
   const mapsQuery = encodeURIComponent(
@@ -17,8 +21,15 @@ export default function Location() {
       <div className="max-w-6xl mx-auto px-6">
 
         {/* Section header */}
-        <div className="text-center mb-16">
-          <p
+        <motion.div
+          className="text-center mb-16"
+          variants={sectionHeader}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <motion.p
+            variants={fadeUp}
             style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "11px",
@@ -29,8 +40,9 @@ export default function Location() {
             }}
           >
             Find Us
-          </p>
-          <h2
+          </motion.p>
+          <motion.h2
+            variants={fadeUp}
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: "clamp(2rem, 5vw, 3.2rem)",
@@ -41,24 +53,28 @@ export default function Location() {
             }}
           >
             Our Location
-          </h2>
-          <div className="flex items-center justify-center gap-4">
+          </motion.h2>
+          <motion.div variants={fadeUp} className="flex items-center justify-center gap-4">
             <div style={{ width: "50px", height: "1px", background: colors.gradientDividerL }} />
             <div style={{ width: "5px", height: "5px", borderRadius: "50%", backgroundColor: colors.tertiary }} />
             <div style={{ width: "50px", height: "1px", background: colors.gradientDividerR }} />
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8 items-start">
 
           {/* Address card */}
-          <div
+          <motion.div
             className="rounded-2xl p-6 sm:p-8"
             style={{
               backgroundColor: colors.secondaryCard,
               border: `1px solid ${colors.borderTertiary25}`,
               boxShadow: `0 0 40px ${colors.glowTertiary08}`,
             }}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
           >
             {/* Decorative top accent */}
             <div
@@ -188,23 +204,30 @@ export default function Location() {
 
             {/* Get Directions CTA */}
             <a href={mapsUrl} target="_blank" rel="noopener noreferrer" className="block mt-8">
-              <button
+              <motion.button
                 className="btn-gold w-full py-3 rounded text-xs"
                 style={{ letterSpacing: "0.12em", textTransform: "uppercase" }}
+                whileHover={{ scale: 1.02, filter: "brightness(1.1)" }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ duration: 0.2 }}
               >
                 Get Directions →
-              </button>
+              </motion.button>
             </a>
-          </div>
+          </motion.div>
 
           {/* Map embed */}
-          <div
+          <motion.div
             className="rounded-2xl overflow-hidden"
             style={{
               border: `1px solid ${colors.borderTertiary25}`,
               height: "clamp(280px, 60vw, 480px)",
               boxShadow: `0 0 40px ${colors.glowTertiary08}`,
             }}
+            variants={cardItem}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
           >
             <iframe
               src={mapsEmbed}
@@ -216,7 +239,7 @@ export default function Location() {
               referrerPolicy="no-referrer-when-downgrade"
               title="Clinic Location Map"
             />
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

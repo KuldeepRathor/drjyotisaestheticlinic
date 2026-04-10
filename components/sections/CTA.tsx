@@ -1,18 +1,26 @@
+"use client";
+
 import Link from "next/link";
 import { clinicConfig } from "@/lib/clinic-config";
 import { colors } from "@/lib/colors";
+import { motion } from "framer-motion";
+import { fadeUp, staggerContainer, cardItem, sectionHeader } from "@/lib/animations";
 
 export default function CTA() {
   return (
     <section className="w-full py-20" style={{ backgroundColor: colors.secondaryDark }}>
       <div className="max-w-4xl mx-auto px-6">
-        <div
+        <motion.div
           className="rounded-2xl p-8 sm:p-12 text-center relative overflow-hidden"
           style={{
             backgroundColor: colors.secondaryCard,
             border: `1px solid ${colors.borderTertiary30}`,
             boxShadow: `0 0 60px ${colors.glowTertiary08}`,
           }}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
         >
           {/* Background glow */}
           <div
@@ -32,9 +40,16 @@ export default function CTA() {
             }}
           />
 
-          <div className="relative z-10">
+          <motion.div
+            className="relative z-10"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
             {/* Label */}
-            <p
+            <motion.p
+              variants={fadeUp}
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "11px",
@@ -45,10 +60,11 @@ export default function CTA() {
               }}
             >
               Get Started Today
-            </p>
+            </motion.p>
 
             {/* Heading */}
-            <h2
+            <motion.h2
+              variants={fadeUp}
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
                 fontSize: "clamp(2rem, 5vw, 3.5rem)",
@@ -60,16 +76,17 @@ export default function CTA() {
               }}
             >
               Book Your Consultation Today
-            </h2>
+            </motion.h2>
 
             {/* Divider */}
-            <div className="flex items-center justify-center gap-4 mb-6">
+            <motion.div variants={cardItem} className="flex items-center justify-center gap-4 mb-6">
               <div style={{ width: "40px", height: "1px", background: colors.gradientDividerL }} />
               <div style={{ width: "5px", height: "5px", borderRadius: "50%", backgroundColor: colors.tertiary }} />
               <div style={{ width: "40px", height: "1px", background: colors.gradientDividerR }} />
-            </div>
+            </motion.div>
 
-            <p
+            <motion.p
+              variants={fadeUp}
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "1rem",
@@ -81,12 +98,15 @@ export default function CTA() {
               Get personalized skin &amp; hair treatment guidance from Dr Jyoti.
               <br />
               Expert care, proven results.
-            </p>
+            </motion.p>
 
             {/* Phone number */}
-            <a
+            <motion.a
               href={`tel:${clinicConfig.phone}`}
               className="inline-flex items-center gap-3 mb-8 group"
+              variants={fadeUp}
+              whileHover={{ scale: 1.03 }}
+              transition={{ duration: 0.2 }}
             >
               <div
                 className="w-10 h-10 rounded-full flex items-center justify-center"
@@ -110,29 +130,38 @@ export default function CTA() {
               >
                 {clinicConfig.phoneDisplay}
               </span>
-            </a>
+            </motion.a>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+              variants={cardItem}
+            >
               <Link href="/book">
-                <button
+                <motion.button
                   className="btn-gold px-10 py-3.5 rounded text-sm"
                   style={{ letterSpacing: "0.12em", textTransform: "uppercase", minWidth: "200px" }}
+                  whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ duration: 0.2 }}
                 >
                   Book Appointment
-                </button>
+                </motion.button>
               </Link>
               <a href={`tel:${clinicConfig.phone}`}>
-                <button
+                <motion.button
                   className="btn-gold-outline px-10 py-3.5 rounded text-sm"
                   style={{ letterSpacing: "0.12em", textTransform: "uppercase", minWidth: "200px" }}
+                  whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ duration: 0.2 }}
                 >
                   Call Now
-                </button>
+                </motion.button>
               </a>
-            </div>
-          </div>
-        </div>
+            </motion.div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,5 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { colors } from "@/lib/colors";
+import { motion } from "framer-motion";
+import { fadeUp, staggerContainer, cardItem, sectionHeader } from "@/lib/animations";
 
 const reviews = [
   {
@@ -35,22 +39,27 @@ export default function SocialProof() {
       <div className="max-w-6xl mx-auto px-6">
 
         {/* Stats bar */}
-        <div
+        <motion.div
           className="grid grid-cols-2 md:grid-cols-4 mb-20 rounded-lg overflow-hidden divide-x divide-y md:divide-y-0"
           style={{
             border: `1px solid ${colors.borderTertiary25}`,
             borderColor: colors.borderTertiary25,
             "--tw-divide-opacity": "1",
           } as React.CSSProperties}
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
         >
           {stats.map((stat, i) => (
-            <div
+            <motion.div
               key={i}
               className="py-6 md:py-8 text-center"
               style={{
                 backgroundColor: colors.secondaryCard,
                 borderColor: colors.borderTertiary15,
               }}
+              variants={cardItem}
             >
               <div
                 style={{
@@ -78,13 +87,20 @@ export default function SocialProof() {
               >
                 {stat.label}
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Section header */}
-        <div className="text-center mb-12">
-          <p
+        <motion.div
+          className="text-center mb-12"
+          variants={sectionHeader}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <motion.p
+            variants={fadeUp}
             style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "11px",
@@ -95,8 +111,9 @@ export default function SocialProof() {
             }}
           >
             Patient Stories
-          </p>
-          <h2
+          </motion.p>
+          <motion.h2
+            variants={fadeUp}
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: "clamp(2rem, 5vw, 3.2rem)",
@@ -107,18 +124,30 @@ export default function SocialProof() {
             }}
           >
             What Our Patients Say
-          </h2>
-          <div className="flex items-center justify-center gap-4">
+          </motion.h2>
+          <motion.div variants={fadeUp} className="flex items-center justify-center gap-4">
             <div style={{ width: "50px", height: "1px", background: colors.gradientDividerL }} />
             <div style={{ width: "5px", height: "5px", borderRadius: "50%", backgroundColor: colors.tertiary }} />
             <div style={{ width: "50px", height: "1px", background: colors.gradientDividerR }} />
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        {/* Review cards */}
-        <div className="grid md:grid-cols-3 gap-6 mb-10">
+        {/* Review cards — staggered */}
+        <motion.div
+          className="grid md:grid-cols-3 gap-6 mb-10"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+        >
           {reviews.map((review, index) => (
-            <div key={index} className="review-card rounded-lg p-6 flex flex-col">
+            <motion.div
+              key={index}
+              className="review-card rounded-lg p-6 flex flex-col"
+              variants={cardItem}
+              whileHover={{ y: -4, boxShadow: `0 12px 40px ${colors.glowTertiary13}` }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+            >
               {/* Stars */}
               <div className="flex gap-1 mb-4">
                 {Array.from({ length: review.rating }).map((_, i) => (
@@ -165,21 +194,30 @@ export default function SocialProof() {
                   {review.treatment}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* View all button */}
-        <div className="text-center">
+        <motion.div
+          className="text-center"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+        >
           <Link href="/reviews">
-            <button
+            <motion.button
               className="btn-gold-outline px-8 py-3 rounded text-xs"
               style={{ letterSpacing: "0.15em", textTransform: "uppercase" }}
+              whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ duration: 0.2 }}
             >
               View All Reviews
-            </button>
+            </motion.button>
           </Link>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

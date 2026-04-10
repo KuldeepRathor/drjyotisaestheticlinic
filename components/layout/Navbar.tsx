@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { clinicConfig } from "@/lib/clinic-config";
 import { colors } from "@/lib/colors";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
   { label: "Treatments", href: "#treatments" },
@@ -16,7 +17,15 @@ const navItems = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const router = useRouter();
+
+  // Detect scroll to add shadow
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -45,7 +54,16 @@ export default function Navbar() {
   };
 
   return (
-    <header className="w-full sticky top-0 z-50" style={{ backgroundColor: colors.secondary, borderBottom: `1px solid ${colors.borderTertiary25}` }}>
+    <motion.header
+      className="w-full sticky top-0 z-50"
+      style={{ backgroundColor: colors.secondary, borderBottom: `1px solid ${colors.borderTertiary25}` }}
+      animate={{
+        boxShadow: scrolled
+          ? `0 4px 24px ${colors.glowTertiary13}`
+          : "0 0px 0px transparent",
+      }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+    >
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
 
         {/* Logo */}
@@ -127,9 +145,15 @@ export default function Navbar() {
             {clinicConfig.phoneDisplay}
           </a>
           <Link href="/book">
-            <button className="btn-gold px-5 py-2 rounded text-xs" style={{ letterSpacing: "0.1em", textTransform: "uppercase" }}>
+            <motion.button
+              className="btn-gold px-5 py-2 rounded text-xs"
+              style={{ letterSpacing: "0.1em", textTransform: "uppercase" }}
+              whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ duration: 0.2 }}
+            >
               Book Now
-            </button>
+            </motion.button>
           </Link>
           {/* Mobile hamburger */}
           <button
@@ -150,25 +174,34 @@ export default function Navbar() {
       </div>
 
       {/* Mobile menu */}
-      {menuOpen && (
-        <div className="md:hidden px-4 pb-4" style={{ backgroundColor: colors.secondaryDark, borderTop: `1px solid ${colors.borderTertiary15}` }}>
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={(e) => handleNavClick(e, item.href)}
-              className="block py-3 text-sm cursor-pointer"
-              style={{ color: colors.textMuted, borderBottom: `1px solid ${colors.borderTertiary08}`, letterSpacing: "0.1em", textTransform: "uppercase" }}
-            >
-              {item.label}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            className="md:hidden px-4 pb-4"
+            style={{ backgroundColor: colors.secondaryDark, borderTop: `1px solid ${colors.borderTertiary15}` }}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+          >
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
+                className="block py-3 text-sm cursor-pointer"
+                style={{ color: colors.textMuted, borderBottom: `1px solid ${colors.borderTertiary08}`, letterSpacing: "0.1em", textTransform: "uppercase" }}
+              >
+                {item.label}
+              </a>
+            ))}
+            <a href={`tel:${clinicConfig.phone}`} className="block py-3 text-sm" style={{ color: colors.tertiary }}>
+              📞 {clinicConfig.phoneDisplay}
             </a>
-          ))}
-          <a href={`tel:${clinicConfig.phone}`} className="block py-3 text-sm" style={{ color: colors.tertiary }}>
-            📞 {clinicConfig.phoneDisplay}
-          </a>
-        </div>
-      )}
-    </header>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 }
 

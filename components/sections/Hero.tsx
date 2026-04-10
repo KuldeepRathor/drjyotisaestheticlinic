@@ -1,11 +1,15 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { clinicConfig } from "@/lib/clinic-config";
 import { colors } from "@/lib/colors";
+import { motion } from "framer-motion";
+import { fadeUp, fadeIn } from "@/lib/animations";
 
 export default function Hero() {
   return (
-    <section
+    <motion.section
       className="w-full relative overflow-hidden"
       style={{
         backgroundColor: colors.secondary,
@@ -13,6 +17,9 @@ export default function Hero() {
         display: "flex",
         alignItems: "center",
       }}
+      initial="hidden"
+      animate="visible"
+      variants={fadeIn}
     >
       {/* Background radial glow */}
       <div
@@ -22,12 +29,18 @@ export default function Hero() {
             `radial-gradient(ellipse 70% 50% at 50% 0%, ${colors.glowTertiary13} 0%, transparent 70%)`,
         }}
       />
-      <div className="absolute inset-0 pointer-events-none" style={{
-        backgroundImage: "url('/images/background.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        opacity: 0.125,
-      }}></div>
+      <motion.div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: "url('/images/background.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          opacity: 0.125,
+        }}
+        initial={{ scale: 1.05, opacity: 0 }}
+        animate={{ scale: 1, opacity: 0.125 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+      />
 
       {/* Decorative corner lines */}
       <div
@@ -62,8 +75,14 @@ export default function Hero() {
       <div className="max-w-5xl mx-auto px-6 py-20 text-center relative z-10">
 
         {/* Logo */}
-        <div className="flex justify-center mb-6">
-          <div
+        <motion.div
+          className="flex justify-center mb-6"
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.1 }}
+        >
+          <motion.div
             style={{
               width: "80px",
               height: "80px",
@@ -72,6 +91,8 @@ export default function Hero() {
               flexShrink: 0,
               boxShadow: `0 0 30px ${colors.borderTertiary30}`,
             }}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
           >
             <Image
               src={clinicConfig.logo}
@@ -81,11 +102,11 @@ export default function Hero() {
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
               priority
             />
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Clinic Name */}
-        <h1
+        <motion.h1
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontSize: "clamp(2.8rem, 7vw, 5.5rem)",
@@ -95,11 +116,15 @@ export default function Hero() {
             color: colors.primaryFaint,
             marginBottom: "0.25rem",
           }}
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.2 }}
         >
           Dr Jyoti&apos;s
-        </h1>
+        </motion.h1>
         {/* Note: the two h1s together form the full clinic name */}
-        <h1
+        <motion.h1
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontSize: "clamp(2.8rem, 7vw, 5.5rem)",
@@ -112,12 +137,16 @@ export default function Hero() {
             backgroundClip: "text",
             marginBottom: "1.5rem",
           }}
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.3 }}
         >
           Aesthetic Clinic
-        </h1>
+        </motion.h1>
 
         {/* Tagline */}
-        <p
+        <motion.p
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontSize: "clamp(1rem, 2.5vw, 1.4rem)",
@@ -126,19 +155,29 @@ export default function Hero() {
             letterSpacing: "0.1em",
             marginBottom: "0.75rem",
           }}
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.4 }}
         >
           {clinicConfig.slogan}
-        </p>
+        </motion.p>
 
         {/* Divider */}
-        <div className="flex items-center justify-center gap-4 mb-8">
+        <motion.div
+          className="flex items-center justify-center gap-4 mb-8"
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.45 }}
+        >
           <div style={{ width: "60px", height: "1px", background: colors.gradientDividerL }} />
           <div style={{ width: "6px", height: "6px", borderRadius: "50%", backgroundColor: colors.tertiary }} />
           <div style={{ width: "60px", height: "1px", background: colors.gradientDividerR }} />
-        </div>
+        </motion.div>
 
         {/* Subtitle */}
-        <p
+        <motion.p
           style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "clamp(0.9rem, 2vw, 1.05rem)",
@@ -148,33 +187,55 @@ export default function Hero() {
             lineHeight: 1.7,
             letterSpacing: "0.02em",
           }}
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.5 }}
         >
           Advanced skin, hair &amp; aesthetic treatments by certified experts.
           Acne, laser hair removal, PRP, chemical peel, slimming &amp; more.
-        </p>
+        </motion.p>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <motion.div
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.6 }}
+        >
           <Link href="/book">
-            <button
+            <motion.button
               className="btn-gold px-8 py-3 rounded text-sm"
               style={{ letterSpacing: "0.12em", textTransform: "uppercase", minWidth: "200px" }}
+              whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ duration: 0.2 }}
             >
               Book Appointment
-            </button>
+            </motion.button>
           </Link>
           <a href={`tel:${clinicConfig.phone}`}>
-            <button
+            <motion.button
               className="btn-gold-outline px-8 py-3 rounded text-sm"
               style={{ letterSpacing: "0.12em", textTransform: "uppercase", minWidth: "200px" }}
+              whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ duration: 0.2 }}
             >
               Call: {clinicConfig.phoneDisplay}
-            </button>
+            </motion.button>
           </a>
-        </div>
+        </motion.div>
 
         {/* Location badge */}
-        <div className="mt-10 flex justify-center">
+        <motion.div
+          className="mt-10 flex justify-center"
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.7 }}
+        >
           <div
             className="flex items-center gap-2 px-4 py-2 rounded-full text-xs"
             style={{
@@ -188,8 +249,8 @@ export default function Hero() {
             </svg>
             {clinicConfig.address.short}
           </div>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
