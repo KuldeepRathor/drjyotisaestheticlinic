@@ -189,7 +189,7 @@ export default function Treatments() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
         >
-          <Link href="/treatments">
+          {/* <Link href="/treatments">
             <motion.button
               className="btn-gold-outline px-8 py-3 rounded text-xs"
               style={{ letterSpacing: "0.15em", textTransform: "uppercase" }}
@@ -199,7 +199,7 @@ export default function Treatments() {
             >
               View All Treatments
             </motion.button>
-          </Link>
+          </Link> */}
         </motion.div>
       </div>
     </section>

@@ -11,7 +11,7 @@ const credentials = [
   "BAMS – Medical Graduate",
   "Certified Aesthetic Skin Specialist",
   "Laser & Cosmetic Procedure Expert",
-  "4+ Years Clinical Experience",
+  "5+ Years Clinical Experience",
   "500+ Satisfied Patients",
 ];
 
