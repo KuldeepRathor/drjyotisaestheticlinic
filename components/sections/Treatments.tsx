@@ -27,7 +27,7 @@ const treatmentCategories = [
     title: "Laser",
     icon: "✦",
     treatments: [
-      "Laser Hair Removal", "Carbon Peel Laser", "Tattoo Removal", "Pico Laser"
+      "Laser Hair Reduction", "Carbon Peel Laser", "Tattoo Removal", "Pico Laser"
     ],
     slug: "laser",
   },

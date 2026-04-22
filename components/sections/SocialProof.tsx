@@ -14,9 +14,9 @@ const reviews = [
   },
   {
     name: "Rahul M.",
-    text: "Best laser hair removal experience! Very effective and the staff is so friendly. Highly recommend Dr. Jyoti's clinic to everyone.",
+    text: "Best laser hair reduction experience! Very effective and the staff is so friendly. Highly recommend Dr. Jyoti's clinic to everyone.",
     rating: 5,
-    treatment: "Laser Hair Removal",
+    treatment: "Laser Hair Reduction",
   },
   {
     name: "Sneha K.",

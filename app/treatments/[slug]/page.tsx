@@ -13,9 +13,9 @@ const treatmentData: Record<string, Treatment> = {
       "Advanced acne treatment with dermatology-approved procedures and personalized plans.",
   },
   "laser-hair-removal": {
-    title: "Laser Hair Removal",
+    title: "Laser Hair Reduction",
     description:
-      "Safe and effective laser hair removal treatment for long-lasting smooth skin.",
+      "Safe and effective laser hair reduction treatment for long-lasting smooth skin.",
   },
   "hair-fall-treatment": {
     title: "Hair Fall Treatment",

@@ -193,7 +193,7 @@ export default function Hero() {
           transition={{ delay: 0.5 }}
         >
           Advanced skin, hair &amp; aesthetic treatments by certified experts.
-          Acne, laser hair removal, PRP, chemical peel, slimming &amp; more.
+          Acne, laser hair reduction, PRP, chemical peel, slimming &amp; more.
         </motion.p>
 
         {/* CTAs */}

@@ -138,7 +138,7 @@ export default function AppointmentForm() {
 
           <SelectContent>
             <SelectItem value="Acne Treatment">Acne Treatment</SelectItem>
-            <SelectItem value="Laser Hair Removal">Laser Hair Removal</SelectItem>
+            <SelectItem value="Laser Hair Reduction">Laser Hair Reduction</SelectItem>
             <SelectItem value="Hair Fall Treatment">Hair Fall Treatment</SelectItem>
             <SelectItem value="PRP Facial">PRP Facial</SelectItem>
             <SelectItem value="Chemical Peel">Chemical Peel</SelectItem>
