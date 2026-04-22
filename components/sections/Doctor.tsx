@@ -211,7 +211,7 @@ export default function Doctor() {
                   marginBottom: "1.5rem",
                 }}
               >
-                With over 4 years of clinical excellence, Dr Jyoti combines medical
+                With over 5 years of clinical excellence, Dr Jyoti combines medical
                 precision with artistic vision to deliver transformative aesthetic
                 results. Her patient-first approach has made her one of the most
                 trusted names in Navi Mumbai.
